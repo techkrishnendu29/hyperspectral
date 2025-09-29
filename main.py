@@ -37,11 +37,11 @@ def generate_layers(image):
     layers = {}
 
     # True Color
-    layers['true_color'] = image.getThumbURL({'bands':['B4','B3','B2'], 'min':0, 'max':3000, 'format':'png', 'scale':10})
+  #  layers['true_color'] = image.getThumbURL({'bands':['B4','B3','B2'], 'min':0, 'max':3000, 'format':'png', 'scale':10})
     # False Color
-    layers['false_color'] = image.getThumbURL({'bands':['B8','B4','B3'], 'min':0, 'max':3000, 'format':'png', 'scale':10})
+   # layers['false_color'] = image.getThumbURL({'bands':['B8','B4','B3'], 'min':0, 'max':3000, 'format':'png', 'scale':10})
     # SWIR
-    layers['swir'] = image.getThumbURL({'bands':['B12','B8','B4'], 'min':0, 'max':3000, 'format':'png', 'scale':10})
+   # layers['swir'] = image.getThumbURL({'bands':['B12','B8','B4'], 'min':0, 'max':3000, 'format':'png', 'scale':10})
     # NDVI
     ndvi = image.normalizedDifference(['B8','B4']).rename('NDVI')
     layers['ndvi'] = ndvi.getThumbURL({'min':0,'max':1,'palette':['white','lightgreen','green','darkgreen'],'format':'png','scale':10})
@@ -111,4 +111,5 @@ def multi_layer_map(
         return JSONResponse(content=layers)
 
     except ee.EEException as e:
+
         raise HTTPException(status_code=500, detail=f"Earth Engine error: {e}")
