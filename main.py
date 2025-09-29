@@ -157,3 +157,4 @@ def multi_layer_map(
         raise HTTPException(status_code=500, detail=f"Earth Engine error: {str(e)}")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal error: {str(e)}")
+
